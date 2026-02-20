@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BOBEG bv — Rioolkeuring, Waterkeuring & Advies</title>
+  <meta name="description" content="BOBEG bv: erkend specialist voor rioolkeuringen, waterkeuringen en advies ruimtelijke ordening in België." />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: hsl(187, 60%, 28%);
+      --primary-fg: hsl(0, 0%, 100%);
+      --secondary: hsl(38, 55%, 52%);
+      --secondary-fg: hsl(0, 0%, 100%);
+      --bg: hsl(200, 20%, 98%);
+      --fg: hsl(200, 25%, 12%);
+      --muted: hsl(200, 10%, 45%);
+      --accent: hsl(187, 40%, 92%);
+      --accent-fg: hsl(187, 60%, 22%);
+      --border: hsl(200, 15%, 88%);
+      --card: hsl(0, 0%, 100%);
+      --section-grad: linear-gradient(180deg, hsl(200, 20%, 98%) 0%, hsl(200, 15%, 93%) 100%);
+      --hero-grad: linear-gradient(135deg, hsl(187, 60%, 28%) 0%, hsl(200, 50%, 20%) 100%);
+      --radius: 0.75rem;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    /* ===== NAV ===== */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); height: 64px;
+    }
+    .nav .container { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+    .nav-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--primary); letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--secondary); }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { font-size: 0.875rem; font-weight: 500; color: var(--muted); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--primary); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--primary); color: var(--primary-fg);
+      padding: 0.5rem 1rem; border-radius: var(--radius); font-size: 0.875rem; font-weight: 600;
+      transition: opacity 0.2s; border: none; cursor: pointer;
+    }
+    .nav-cta:hover { opacity: 0.9; }
+    .nav-mobile-toggle { display: none; background: none; border: none; cursor: pointer; font-size: 1.5rem; color: var(--fg); }
+    .nav-mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-mobile-toggle { display: block; }
+      .nav-mobile-menu.open {
+        display: flex; flex-direction: column; gap: 0.5rem;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: var(--card); border-bottom: 1px solid var(--border);
+        padding: 1rem 1.5rem;
+      }
+      .nav-mobile-menu a { display: block; padding: 0.5rem 0; font-size: 0.875rem; font-weight: 500; color: var(--muted); }
+      .nav-mobile-menu a:hover { color: var(--primary); }
+      .nav-mobile-menu .nav-cta { width: 100%; justify-content: center; margin-top: 0.5rem; }
+    }
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; background: var(--hero-grad);
+    }
+    .hero-content { position: relative; z-index: 2; padding-top: 5rem; max-width: 720px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--secondary);
+    }
+    .hero-badge svg { width: 20px; height: 20px; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; color: var(--primary-fg);
+      line-height: 1.1; margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--secondary); }
+    .hero p { font-size: 1.15rem; color: rgba(255,255,255,0.8); margin-bottom: 2.5rem; max-width: 600px; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 2rem;
+      border-radius: var(--radius); font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; border: none; font-family: 'Inter', sans-serif;
+    }
+    .btn-hero { background: var(--secondary); color: var(--secondary-fg); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
+    .btn-hero:hover { opacity: 0.9; }
+    .btn-hero-outline {
+      background: rgba(255,255,255,0.1); color: var(--primary-fg);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .btn-hero-outline:hover { background: rgba(255,255,255,0.2); }
+    .btn-primary { background: var(--primary); color: var(--primary-fg); }
+    .btn-primary:hover { opacity: 0.9; }
+    .scroll-indicator {
+      position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); z-index: 2;
+      color: rgba(255,255,255,0.5); animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-10px); }
+    }
+    /* ===== SERVICES ===== */
+    .services { padding: 6rem 0; background: var(--section-grad); }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-label {
+      display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--secondary); margin-bottom: 0.5rem;
+    }
+    .section-title { font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800; color: var(--fg); }
+    .text-gradient {
+      background: linear-gradient(135deg, hsl(187, 60%, 28%) 0%, hsl(200, 50%, 35%) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    @media (max-width: 900px) { .services-grid { grid-template-columns: 1fr; } }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem;
+      padding: 2rem; transition: box-shadow 0.3s;
+    }
+    .service-card:hover { box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+    .service-icon {
+      width: 56px; height: 56px; border-radius: 0.5rem; background: var(--accent);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem;
+      transition: all 0.3s; color: var(--accent-fg);
+    }
+    .service-card:hover .service-icon { background: var(--primary); color: var(--primary-fg); }
+    .service-icon svg { width: 28px; height: 28px; }
+    .service-badge {
+      display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--secondary); margin-bottom: 0.75rem;
+    }
+    .service-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--fg); margin-bottom: 0.75rem; }
+    .service-card > p { font-size: 0.875rem; color: var(--muted); margin-bottom: 1.25rem; line-height: 1.7; }
+    .service-card h4 { font-size: 0.875rem; font-weight: 600; color: var(--fg); margin-bottom: 0.75rem; }
+    .service-list { list-style: none; margin-bottom: 1.25rem; }
+    .service-list li {
+      display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.875rem;
+      color: var(--muted); margin-bottom: 0.5rem;
+    }
+    .service-list li svg { width: 16px; height: 16px; color: var(--primary); margin-top: 3px; flex-shrink: 0; }
+    .service-details { font-size: 0.875rem; color: var(--muted); line-height: 1.7; border-top: 1px solid var(--border); padding-top: 1rem; }
+    /* ===== ABOUT ===== */
+    .about { padding: 6rem 0; background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-left p { font-size: 0.95rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+    .about-callout {
+      display: flex; align-items: center; gap: 0.75rem; padding: 1rem;
+      background: var(--accent); border-radius: 0.5rem;
+    }
+    .about-callout svg { width: 32px; height: 32px; color: var(--primary); flex-shrink: 0; }
+    .about-callout p { font-size: 0.875rem; font-weight: 500; color: var(--accent-fg); }
+    .strengths-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    @media (max-width: 500px) { .strengths-grid { grid-template-columns: 1fr; } }
+    .strength-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 0.75rem;
+      padding: 1.5rem; transition: box-shadow 0.3s;
+    }
+    .strength-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .strength-icon {
+      width: 48px; height: 48px; border-radius: 0.5rem; background: var(--accent);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+      color: var(--accent-fg);
+    }
+    .strength-icon svg { width: 24px; height: 24px; }
+    .strength-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--fg); margin-bottom: 0.5rem; }
+    .strength-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+    /* ===== CONTACT ===== */
+    .contact { padding: 6rem 0; background: var(--section-grad); }
+    .contact .section-header p { color: var(--muted); margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    .contact-card {
+      max-width: 640px; margin: 0 auto; background: var(--card);
+      border-radius: 1rem; border: 1px solid var(--border); padding: 3rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+    .contact-person { text-align: center; margin-bottom: 2rem; }
+    .contact-person h3 { font-size: 1.25rem; font-weight: 700; color: var(--fg); margin-bottom: 0.25rem; }
+    .contact-person p { font-size: 0.875rem; color: var(--muted); }
+    .contact-items { display: flex; flex-direction: column; gap: 1.25rem; }
+    .contact-item {
+      display: flex; align-items: center; gap: 1rem; padding: 1rem;
+      border-radius: 0.75rem; background: var(--accent); transition: background 0.2s;
+    }
+    a.contact-item:hover { background: hsl(187, 35%, 87%); }
+    .contact-item-icon {
+      width: 48px; height: 48px; border-radius: 0.5rem; background: var(--primary);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      color: var(--primary-fg);
+    }
+    .contact-item-icon svg { width: 20px; height: 20px; }
+    .contact-item-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem; }
+    .contact-item-value { font-size: 0.95rem; font-weight: 500; color: var(--fg); transition: color 0.2s; }
+    a.contact-item:hover .contact-item-value { color: var(--primary); }
+    .contact-cta { text-align: center; margin-top: 2rem; }
+    /* ===== FOOTER ===== */
+    .footer {
+      background: var(--fg); padding: 2.5rem 0;
+    }
+    .footer .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.25rem; font-weight: 800; color: var(--bg); }
+    .footer-logo span { color: var(--secondary); }
+    .footer p { font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body>
+<!-- NAV -->
+<nav class="nav">
+  <div class="container">
+    <a href="#home" class="nav-logo">BOBEG<span>.</span></a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#diensten">Diensten</a>
+      <a href="#over-ons">Over Ons</a>
+      <a href="#contact">Contact</a>
+      <a href="#contact" class="nav-cta">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Contacteer Ons
+      </a>
+    </div>
+    <button class="nav-mobile-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">☰</button>
+  </div>
+  <div id="mobileMenu" class="nav-mobile-menu">
+    <a href="#home" onclick="document.getElementById('mobileMenu').classList.remove('open')">Home</a>
+    <a href="#diensten" onclick="document.getElementById('mobileMenu').classList.remove('open')">Diensten</a>
+    <a href="#over-ons" onclick="document.getElementById('mobileMenu').classList.remove('open')">Over Ons</a>
+    <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+    <a href="#contact" class="nav-cta" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacteer Ons</a>
+  </div>
+</nav>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+      Erkend Keurder VLARIO &amp; AQUAFLANDERS
+    </div>
+    <h1>Uw specialist in <span>keuringen</span> &amp; <span>advies</span></h1>
+    <p>BOBEG bv begeleidt u bij rioolkeuringen, waterkeuringen en stedenbouwkundig advies. Professioneel, persoonlijk en betrouwbaar.</p>
+    <div class="hero-buttons">
+      <a href="#diensten" class="btn btn-hero">Onze Diensten</a>
+      <a href="#contact" class="btn btn-hero-outline">Neem Contact Op</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+</section>
+<!-- SERVICES -->
+<section class="services" id="diensten">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Wat wij doen</span>
+      <h2 class="section-title">Onze <span class="text-gradient">Diensten</span></h2>
+    </div>
+    <div class="services-grid">
+      <!-- Rioolkeuring -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+        </div>
+        <span class="service-badge">Erkend door VLARIO</span>
+        <h3>Rioolkeuring</h3>
+        <p>Wij controleren of uw riolering op privéterrein correct gescheiden is. Regenwater (RWA) en afvalwater (DWA) mogen niet samenkomen.</p>
+        <h4>Wanneer nodig?</h4>
+        <ul class="service-list">
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij nieuwbouw</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij wegenwerken (gescheiden rioleringssysteem)</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij een extra huisaansluiting of IBA-installatie</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij een herkeuring na eerdere afkeuring</li>
+        </ul>
+        <p class="service-details">Na een geslaagde keuring ontvangt u een keuringsattest om de aansluiting op de openbare riolering in gebruik te nemen. Bij gebreken krijgt u een niet-conformiteitsattest met een overzicht van de nodige verbeteringen.</p>
+      </div>
+      <!-- Waterkeuring -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m4 4 2.5 2.5"/><path d="M13.5 6.5a4.95 4.95 0 0 0-7 7"/><path d="M15 5 5 15"/><path d="M14 17v.01"/><path d="M10 16v.01"/><path d="M13 13v.01"/><path d="M16 10v.01"/><path d="M11 20v.01"/><path d="M17 14v.01"/><path d="M20 11v.01"/><path d="M14 20v.01"/><path d="M18 17v.01"/></svg>
+        </div>
+        <span class="service-badge">Erkend door AQUAFLANDERS</span>
+        <h3>Waterkeuring</h3>
+        <p>Wij controleren of uw waterinstallatie conform is en dat de verschillende types waterinstallaties correct gescheiden zijn.</p>
+        <h4>Wanneer nodig?</h4>
+        <ul class="service-list">
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij nieuwbouw</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij belangrijke wijzigingen (renovatie, nieuwe badkamer)</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Bij heringebruikname na afsluiting</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Na herstelmaatregelen van een eerdere keuring</li>
+        </ul>
+        <p class="service-details">Bereid uw uitvoeringsplan en inventaris van de waterinstallatie voor. Bij vragen helpen wij u graag verder!</p>
+      </div>
+      <!-- Advies -->
+      <div class="service-card">
+        <div class="service-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg>
+        </div>
+        <span class="service-badge">14 jaar ervaring</span>
+        <h3>Advies Ruimtelijke Ordening</h3>
+        <p>Bij het aanvragen van een omgevingsvergunning of melding met stedenbouwkundige handelingen heeft u niet altijd een architect nodig. Wij begeleiden u door het proces.</p>
+        <h4>Wanneer nodig?</h4>
+        <ul class="service-list">
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Indienen van melding of omgevingsvergunning</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Opstellen van motivatie bij afwijkingen</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Stedenbouwkundig onderzoek bij aankoop</li>
+          <li><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Opmaken van een stedenbouwkundig attest</li>
+        </ul>
+        <p class="service-details">Wij bieden ondersteuning bij aankoop, verkoop, verbouwingen en het uittekenen van plannen voor vergunningen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ABOUT -->
+<section class="about" id="over-ons">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <span class="section-label">Over Ons</span>
+        <h2 class="section-title" style="margin-bottom:1.5rem;">Waarom kiezen voor <span class="text-gradient">BOBEG bv</span>?</h2>
+        <p>Bij BOBEG bv staan expertise, kwaliteit en persoonlijke service centraal. Wij begeleiden particulieren en professionals bij rioleringswerken- en keuringen, regenwateroplossingen, stedenbouwkundige vraagstukken, vastgoedtransacties en vergunningsprocedures.</p>
+        <p>Wij bieden steeds de meest gepaste oplossing rekening houdend met uw specifieke situatie ter plaatse en uw persoonlijke wensen en mogelijkheden. Wij streven ernaar om helder en deskundig advies te bieden, zodat u met vertrouwen beslissingen kan nemen over uw project — groot of klein.</p>
+        <div class="about-callout">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <p>Wij streven altijd een vlotte en efficiënte aanpak na. Indien nodig verwijzen we u door naar betrouwbare collega's met eenzelfde visie.</p>
+        </div>
+      </div>
+      <div class="strengths-grid">
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+          </div>
+          <h3>Ervaring &amp; Expertise</h3>
+          <p>14 jaar ervaring in ruimtelijke ordening, werfleiding bij wegeniswerken en specialisatie in rioleringswerken.</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </div>
+          <h3>Opleidingen &amp; Certificeringen</h3>
+          <p>Bachelor Bouwkunde, Graduaat Verkeerskunde, VLARIO Rioleringskeuringen en Aquaflanders Waterkeuring type C.</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Persoonlijke Aanpak</h3>
+          <p>Oplossingen op maat, afgestemd op uw specifieke situatie, wensen en mogelijkheden.</p>
+        </div>
+        <div class="strength-card">
+          <div class="strength-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Betrouwbaar &amp; Transparant</h3>
+          <p>Duidelijke communicatie, heldere adviezen en een breed gamma aan diensten om kosten te drukken.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Neem Contact Op</span>
+      <h2 class="section-title">Contacteer <span class="text-gradient">Ons</span></h2>
+      <p>Heb je vragen of wil je meer informatie? Neem gerust contact op, we staan voor je klaar!</p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-person">
+        <h3>Glenn Beks</h3>
+        <p>Zaakvoerder &amp; Expert</p>
+      </div>
+      <div class="contact-items">
+        <a href="mailto:glenn@bobeg.be" class="contact-item">
+          <div class="contact-item-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div>
+            <p class="contact-item-label">Email</p>
+            <p class="contact-item-value">glenn@bobeg.be</p>
+          </div>
+        </a>
+        <a href="tel:+32494755405" class="contact-item">
+          <div class="contact-item-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <p class="contact-item-label">Telefoon</p>
+            <p class="contact-item-value">+32 494 75 54 05</p>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-item-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M12 18h.01"/></svg>
+          </div>
+          <div>
+            <p class="contact-item-label">BTW-nummer</p>
+            <p class="contact-item-value">BE1000.111.174</p>
+          </div>
+        </div>
+      </div>
+      <div class="contact-cta">
+        <a href="tel:+32494755405" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Bel Ons Direct
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p class="footer-logo">BOBEG<span>.</span></p>
+    <p>&copy; 2026 BOBEG bv — Alle rechten voorbehouden</p>
+  </div>
+</footer>
+</body>
+</html>
