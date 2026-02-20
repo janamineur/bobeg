@@ -162,6 +162,9 @@
     }
     .about-callout svg { width: 32px; height: 32px; color: var(--primary); flex-shrink: 0; }
     .about-callout p { font-size: 0.875rem; font-weight: 500; color: var(--accent-fg); }
+    
+    .about-note { margin-bottom: 0 }
+    
     .strengths-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
     @media (max-width: 500px) { .strengths-grid { grid-template-columns: 1fr; } }
     .strength-card {
@@ -226,10 +229,6 @@
       <a href="#diensten">Diensten</a>
       <a href="#over-ons">Over Ons</a>
       <a href="#contact">Contact</a>
-      <a href="#contact" class="nav-cta">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        Contacteer Ons
-      </a>
     </div>
     <button class="nav-mobile-toggle" onclick="document.getElementById('mobileMenu').classList.toggle('open')" aria-label="Menu">☰</button>
   </div>
@@ -238,7 +237,6 @@
     <a href="#diensten" onclick="document.getElementById('mobileMenu').classList.remove('open')">Diensten</a>
     <a href="#over-ons" onclick="document.getElementById('mobileMenu').classList.remove('open')">Over Ons</a>
     <a href="#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
-    <a href="#contact" class="nav-cta" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contacteer Ons</a>
   </div>
 </nav>
 <!-- HERO -->
@@ -333,7 +331,7 @@
         <p>Wij bieden steeds de meest gepaste oplossing rekening houdend met uw specifieke situatie ter plaatse en uw persoonlijke wensen en mogelijkheden. Wij streven ernaar om helder en deskundig advies te bieden, zodat u met vertrouwen beslissingen kan nemen over uw project — groot of klein.</p>
         <div class="about-callout">
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <p>Wij streven altijd een vlotte en efficiënte aanpak na. Indien nodig verwijzen we u door naar betrouwbare collega's met eenzelfde visie.</p>
+          <p class="about-note">Wij streven altijd een vlotte en efficiënte aanpak na. Indien nodig verwijzen we u door naar betrouwbare collega's met eenzelfde visie.</p>
         </div>
       </div>
       <div class="strengths-grid">
@@ -410,12 +408,6 @@
             <p class="contact-item-value">BE1000.111.174</p>
           </div>
         </div>
-      </div>
-      <div class="contact-cta">
-        <a href="tel:+32494755405" class="btn btn-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Bel Ons Direct
-        </a>
       </div>
     </div>
   </div>
